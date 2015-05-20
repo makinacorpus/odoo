@@ -133,9 +133,10 @@ def _recompute_categ(self, cr, uid, pid, answers_ids):
     cr.execute(query)
     segm_cat_ids = cr.fetchall()
 
-    for (segm_id, cat_id) in segm_cat_ids:
-        if test_prof(cr, uid, segm_id, pid, answers_ids):
-            ok.append(cat_id)
+    if answers_ids:
+        for (segm_id, cat_id) in segm_cat_ids:
+            if test_prof(cr, uid, segm_id, pid, answers_ids):
+                ok.append(cat_id)
     return ok
 
 
@@ -207,8 +208,10 @@ class partner(osv.osv):
             @param ids: List of crm profiling’s IDs
             @param context: A standard dictionary for contextual values """
 
-        if 'answers_ids' in vals:
-            vals['category_id']=[[6, 0, _recompute_categ(self, cr, uid, ids[0], vals['answers_ids'][0][2])]]
+        if 'answers_ids' in vals and vals.get('answers_ids'):
+            answer = vals['answers_ids'][0]
+            if len(answer) > 2:
+                vals['category_id']=[[6, 0, _recompute_categ(self, cr, uid, ids[0], answer[2])]]
 
         return super(partner, self).write(cr, uid, ids, vals, context=context)
 
