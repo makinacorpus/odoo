@@ -4,7 +4,8 @@
 <template id="report_expense">
     <t t-call="report.html_container">
         <t t-foreach="docs" t-as="o">
-            <t t-call="report.external_layout">
+            <!-- sco: remove header on hr expense report (asked by nca) -->
+            <!-- <t t-call="report.external_layout"> -->
                 <div class="page">
                     <h2>HR Expenses</h2>
 
@@ -81,7 +82,7 @@
                     <p>Certified honest and conform,<br/>(Date and signature).<br/><br/></p>
                     <p>This document must be dated and signed for reimbursement.</p>
                 </div>
-            </t>
+            <!-- </t> -->
         </t>
     </t>
 </template>
