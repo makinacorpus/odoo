@@ -1,0 +1,1 @@
+- [Remove header and footer from HR expense reports](https://github.com/makinacorpus/odoo/commit/8f9a70597f303562ff8ce913ac99d81b3de8704f)
